@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "newmod",
+  "version": "${version}",
+
+  "name": "New mod",
+  "description": "",
+  "authors": [
+    "Pitaah"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+	"icon": "icon.png",
+  "license": "CC0-1.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+			"pitaah.newmod.ExampleMod"
+    ],
+		"beforeGameStart": [
+			"pitaah.newmod.ExampleMod"
+		],
+		"afterGameStart": [
+			"pitaah.newmod.ExampleMod"
+		],
+		"recipesReady": [
+			"pitaah.newmod.ExampleMod"
+		]
+	},
+  "mixins": [
+      "newmod.mixins.json"
+  ],
+
+  "depends": {
+		"minecraft": "~7.1",
+    "fabricloader": ">=0.15.5"
+  },
+  "suggests": {
+  }
+}
