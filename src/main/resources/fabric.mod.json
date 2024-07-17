@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "newmod",
+  "id": "ventblock",
   "version": "${version}",
 
-  "name": "New mod",
+  "name": "Vent Block",
   "description": "",
   "authors": [
     "Pitaah"
@@ -19,20 +19,20 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-			"pitaah.newmod.ExampleMod"
+			"pitaah.ventblock.Main"
     ],
 		"beforeGameStart": [
-			"pitaah.newmod.ExampleMod"
+			"pitaah.ventblock.Main"
 		],
 		"afterGameStart": [
-			"pitaah.newmod.ExampleMod"
+			"pitaah.ventblock.Main"
 		],
 		"recipesReady": [
-			"pitaah.newmod.ExampleMod"
+			"pitaah.ventblock.Main"
 		]
 	},
   "mixins": [
-      "newmod.mixins.json"
+      "ventblock.mixins.json"
   ],
 
   "depends": {
