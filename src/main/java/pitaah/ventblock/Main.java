@@ -28,6 +28,9 @@ public class Main implements ModInitializer, GameStartEntrypoint, RecipeEntrypoi
 		new BlockBuilder(MOD_ID)
 			.setLuminance(14)
 			.setTickOnLoad()
+			.setSideTextures("vent_side.png")
+			.setTopTexture("vent_up.png")
+			.setBottomTexture("vent_down.png")
 			.build(new BlockVent("vent", startingBlockId++, Material.grass));
 
 		EntityHelper.Core.createTileEntity(TileEntityVent.class, "vent");
