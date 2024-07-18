@@ -4,17 +4,17 @@
   "version": "${version}",
 
   "name": "Vent Block",
-  "description": "",
+  "description": "Adds a new block for transporting entities vertically.",
   "authors": [
-    "Pitaah"
+    "Piter Groot"
   ],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://github.com/PiterGroot/VentBlock",
+    "issues": "https://github.com/PiterGroot/VentBlock/issues"
   },
 
 	"icon": "icon.png",
-  "license": "CC0-1.0",
+  "license": "MIT",
 
   "environment": "*",
   "entrypoints": {
