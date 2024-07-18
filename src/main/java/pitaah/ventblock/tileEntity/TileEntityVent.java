@@ -13,9 +13,14 @@ import java.util.List;
 
 public class TileEntityVent extends TileEntity
 {
+	public boolean activated = true;
+
 	@Override
 	public void tick()
 	{
+		if(!activated)
+			return;
+
 		worldObj.spawnParticle("explode",this.x + .5f, this.y, this.z+ .5f, 0, .75f, 0);
 		List<Entity> list = this.worldObj.getEntitiesWithinAABB(Entity.class, AABB.getBoundingBoxFromPool(this.x, this.y + 1, this.z, this.x + 1, this.y + 9, this.z+ 1));
 
@@ -24,7 +29,12 @@ public class TileEntityVent extends TileEntity
 
 			while (iterator.hasNext()) {
 				Entity e = (Entity) iterator.next();
-				if (e instanceof EntityPlayer || e instanceof EntityAnimal || e instanceof EntityMonster) {
+				if (e instanceof EntityPlayer || e instanceof EntityAnimal || e instanceof EntityMonster)
+				{
+
+					if (e instanceof EntityPlayer && e.isSneaking())
+						return;
+
 					e.yd += .1f;
 				}
 
