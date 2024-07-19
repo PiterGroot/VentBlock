@@ -32,11 +32,12 @@ public class TileEntityVent extends TileEntity
 				Entity e = (Entity) iterator.next();
 				if (e instanceof EntityPlayer || e instanceof EntityAnimal || e instanceof EntityMonster)
 				{
+					e.fallDistance = 0;
+
 					if (e instanceof EntityPlayer && e.isSneaking())
 						return;
 
 					e.yd += .1f;
-					e.fallDistance = 0;
 				}
 
 				if(e instanceof EntityItem)
