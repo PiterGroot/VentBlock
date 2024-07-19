@@ -1,5 +1,6 @@
 package pitaah.ventblock.tileEntity;
 
+import net.minecraft.core.block.Block;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.EntityItem;
@@ -13,16 +14,16 @@ import java.util.List;
 
 public class TileEntityVent extends TileEntity
 {
-	public boolean activated = true;
+	public int maxRange = 9;
 
 	@Override
 	public void tick()
 	{
-		if(!activated)
-			return;
-
 		worldObj.spawnParticle("explode",this.x + .5f, this.y, this.z+ .5f, 0, .75f, 0);
-		List<Entity> list = this.worldObj.getEntitiesWithinAABB(Entity.class, AABB.getBoundingBoxFromPool(this.x, this.y + 1, this.z, this.x + 1, this.y + 9, this.z+ 1));
+		int ventRange = GetVentRange();
+
+		AABB hitBox = AABB.getBoundingBoxFromPool(this.x, this.y + 1, this.z, this.x + 1, this.y + ventRange, this.z+ 1);
+		List<Entity> list = this.worldObj.getEntitiesWithinAABB(Entity.class, hitBox);
 
 		if (!list.isEmpty()) {
 			Iterator iterator = list.iterator();
@@ -31,11 +32,11 @@ public class TileEntityVent extends TileEntity
 				Entity e = (Entity) iterator.next();
 				if (e instanceof EntityPlayer || e instanceof EntityAnimal || e instanceof EntityMonster)
 				{
-
 					if (e instanceof EntityPlayer && e.isSneaking())
 						return;
 
 					e.yd += .1f;
+					e.fallDistance = 0;
 				}
 
 				if(e instanceof EntityItem)
@@ -44,5 +45,19 @@ public class TileEntityVent extends TileEntity
 				}
 			}
 		}
+	}
+
+	private int GetVentRange()
+	{
+		for (int i = 0; i < maxRange; i++) {
+			Block block = worldObj.getBlock(this.x, this.y + 1 + i, this.z);
+			if(block == null || block == Block.signWallPlanksOak
+				|| block == Block.fluidWaterFlowing || block == Block.fluidWaterStill
+				|| block == Block.fluidLavaFlowing || block == Block.fluidLavaStill)
+				continue;
+
+			else return i;
+		}
+		return maxRange;
 	}
 }
